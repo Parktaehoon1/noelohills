@@ -23,6 +23,7 @@ a {
 
 html {
   font-size: 10px;
+  overflow-x: hidden;
 }
 
 body {
@@ -32,6 +33,7 @@ body {
   line-height: 1.5;
   letter-spacing: -0.45px;
   font-style: normal;
+  overflow-x: hidden;
 }
 
 /* 공통클래스 */
@@ -262,11 +264,43 @@ body {
   background: url("../images/ico-login.png") no-repeat center;
 }
 
+/* 상단 반응형 */
+@media all and (max-width: 1080px) {
+  .menu > li > a {
+    padding: 0 18px !important;
+  }
+
+  .member-list > li {
+    margin-left: 22px !important;
+  }
+}
+@media all and (max-width: 880px) {
+  .menu > li > a {
+    padding: 0 10px !important;
+  }
+}
+@media all and (max-width: 800px) {
+  .logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .gnb {
+    display: none !important;
+  }
+
+  .member {
+    display: none !important;
+  }
+}
 /* 비주얼 */
 .visual {
   position: relative;
   display: block;
-  height: 910px;
 }
 .visual .sw-visual {
   width: 100%;
@@ -277,6 +311,12 @@ body {
   display: block;
   width: 100%;
   height: 100%;
+}
+.visual .sw-visual .visual-img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 600px;
 }
 .visual .sw-visual .visual-1 {
   background: url("../images/PC_minimal_new.png") no-repeat center;
@@ -313,20 +353,18 @@ body {
   background-color: #ffcf42;
 }
 .visual .sw-visual .visual-txt {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 645px;
+  position: relative;
   display: block;
   text-align: center;
+  padding: 50px 0;
 }
 .visual .sw-visual .visual-title {
   position: relative;
   display: block;
   font-size: 30px;
-  font-weight: 500;
   color: #777;
   margin-bottom: 35px;
+  font-weight: 500;
 }
 .visual .sw-visual .visual-desc {
   position: relative;
@@ -341,9 +379,73 @@ body {
   font-size: 20px;
   color: #fff;
   background-color: #ffcc00;
-  padding: 10px 30px;
+  padding: 10px 20px;
 }
 
+/* 비주얼 반응형 */
+@media all and (max-width: 1320px) {
+  .visual-img {
+    height: 45vw !important;
+  }
+
+  .sw-visual-control {
+    top: 41.66vw !important;
+  }
+
+  .visual-txt {
+    padding: 3.78vw 0 !important;
+  }
+}
+@media all and (max-width: 800px) {
+  .visual-img {
+    height: 125vw !important;
+  }
+
+  .visual-1 {
+    background: url("../images/M_minimal_new.png") no-repeat center !important;
+  }
+
+  .visual-2 {
+    background: url("../images/M1_newborn.png") no-repeat center !important;
+  }
+
+  .visual-3 {
+    background: url("../images/M2_BabyEssence.png") no-repeat center !important;
+  }
+
+  .visual-4 {
+    background: url("../images/M3_Branding.png") no-repeat center !important;
+  }
+
+  .sw-visual-control {
+    top: 112.5vw !important;
+  }
+}
+@media all and (max-width: 480px) {
+  .visual-img {
+    height: 124.375vw !important;
+  }
+
+  .visual-1 {
+    background: url("../images/v_480_1.png") no-repeat center !important;
+  }
+
+  .visual-2 {
+    background: url("../images/v_480_2.png") no-repeat center !important;
+  }
+
+  .visual-3 {
+    background: url("../images/v_480_3.png") no-repeat center !important;
+  }
+
+  .visual-4 {
+    background: url("../images/v_480_4.png") no-repeat center !important;
+  }
+
+  .sw-visual-control {
+    top: 115vw !important;
+  }
+}
 /* 카테고리 */
 .category {
   position: relative;
@@ -372,9 +474,9 @@ body {
 }
 .category .inner > div .category-link {
   position: relative;
-  display: inline;
+  display: block;
   padding: 10px 20px;
-  border: 2px solid #333;
+  border: 2px solid #777;
   font-size: 20px;
   font-weight: 600;
 }
@@ -395,6 +497,37 @@ body {
   background-size: cover;
 }
 
+.wb2 {
+  position: absolute !important;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 20px;
+  display: none !important;
+  border: 2px solid #fff !important;
+  color: #fff !important;
+  white-space: nowrap;
+}
+
+/* 카테고리 반응형*/
+@media all and (max-width: 1320px) {
+  .category .inner > div {
+    height: 46.96vw !important;
+  }
+}
+@media all and (max-width: 760px) {
+  .category .inner > div {
+    width: 100% !important;
+    height: 100vw !important;
+  }
+
+  .category-txt {
+    display: none !important;
+  }
+
+  .wb2 {
+    display: inline-block !important;
+  }
+}
 /* 사이트맵 */
 .sitemap {
   position: relative;
@@ -410,15 +543,13 @@ body {
 
 .sitemap-menu {
   position: relative;
-  display: block;
+  display: table;
   width: 770px;
 }
 
 .sitemap-menu > li {
   position: relative;
-  display: block;
-  float: left;
-  margin-right: 45px;
+  display: table-cell;
 }
 
 .sitemap-menu > li > a {
@@ -429,10 +560,6 @@ body {
 }
 
 .sitemap-menu > li > a:hover {
-  color: #ffcc00;
-}
-
-.sitemap-menu > li:hover > a {
   color: #ffcc00;
 }
 
@@ -458,6 +585,16 @@ body {
   color: #ffcc00;
 }
 
+.sitemap-menu > li:hover > a {
+  color: #ffcc00;
+}
+
+/*사이트맵 반응형*/
+@media all and (max-width: 800px) {
+  .sitemap-submenu li a {
+    font-size: 10px;
+  }
+}
 /* 하단 */
 .footer {
   position: relative;
@@ -496,21 +633,15 @@ body {
   display: inline-block;
   margin-right: 40px;
   font-size: 12px;
-  color: #7e868c;
+  color: #777;
 }
 
 .siteinfo-list li span em {
   position: relative;
   display: inline-block;
-  margin-left: 20px;
+  margin-right: 20px;
   font-size: 12px;
-  color: #777;
-}
-
-.siteinfo-list li span a {
-  position: relative;
-  display: inline-block;
-  margin-left: 20px;
+  color: #7e868c;
 }
 
 .insta-link {
@@ -521,7 +652,6 @@ body {
   width: 155px;
   height: 30px;
   background: url("../images/ico_insta.png") no-repeat center;
-  background-size: cover;
 }
 
 .footer-bottom {
@@ -556,12 +686,39 @@ body {
   margin-left: 20px;
 }
 
-.service-list li:first-child {
-  margin-left: 0;
-}
-
 .service-list li a {
   position: relative;
   display: block;
   font-size: 12px;
+}
+
+/*푸터 반응형*/
+@media all and (max-width: 800px) {
+  .footer .inner {
+    width: 100%;
+  }
+
+  .footer-top .inner {
+    padding-bottom: 35px;
+  }
+
+  .siteinfo-list li span {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .siteinfo-list li span em {
+    width: 120px;
+  }
+
+  .copy {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .service-list {
+    width: 100%;
+    text-align: center;
+  }
 }/*# sourceMappingURL=main.css.map */
