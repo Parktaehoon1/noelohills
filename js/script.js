@@ -1,5 +1,13 @@
 // 멀티미디어 요소 로딩 전 실행
 $(document).ready(function(){
+  	// modal 기능
+	let modalWrap = $('.modal-wrap');
+	let modalClose = $('.modal-close')
+
+
+	modalClose.click(function(){
+		modalWrap.stop().fadeOut(500)
+	})
   // 모바일메뉴
   let mb_div = $('.mb-div')
   // 모바일 보기 버튼 기능
