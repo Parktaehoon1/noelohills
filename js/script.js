@@ -1,132 +1,151 @@
 // 멀티미디어 요소 로딩 전 실행
-$(document).ready(function(){
-  	// modal 기능
-	let modalWrap = $('.modal-wrap');
-	let modalClose = $('.modal-close')
+$(document).ready(function () {
+  // 모달창
+  let modalWrap = $(".modal-wrap");
+  let modalClose = $(".modal-close");
 
+  modalClose.click(function () {
+    modalWrap.stop().fadeOut(500);
+    // 추가기능 : 스크롤바 살리기
+    // $('html').css('overflow', 'auto');
+  });
+  let modalMain = $(".modal-main");
+  //내용 배경 클릭
+  modalMain.click(function (event) {
+    // 클릭 정보 전달 막기
+    event.stopPropagation();
+  });
+  //전체 배경 클릭
+  modalWrap.click(function () {
+    modalWrap.stop().fadeOut(500);
+    // 추가기능 : 스크롤바 살리기
+    // $('html').css('overflow', 'auto');
+  });
+  $("html").keydown(function (key) {
+    if (key.keyCode == 13) {
+      modalWrap.stop().fadeOut(200);
+      $("html").css("overflow", "auto");
+    }
+  });
+  // 모바일 메뉴
+  let mb_div = $(".mb-div");
 
-	modalClose.click(function(){
-		modalWrap.stop().fadeOut(500)
-	})
-  // 모바일메뉴
-  let mb_div = $('.mb-div')
   // 모바일 보기 버튼 기능
-  let mb_bt = $('.mb-bt');
-  mb_bt.click(function(){
+  let mb_bt = $(".mb-bt");
+  mb_bt.click(function () {
     mb_div.show();
-  })
+  });
+
   // 모바일 닫기 버튼 기능
-  let mb_close = $('.mb-close');
-  mb_close.click(function(){
+  let mb_close = $(".mb-close");
+  mb_close.click(function () {
     mb_div.hide();
-  }) 
-  // 배경누르면 닫기
-  mb_div.click(function(){
+  });
+
+  // 배경 누르면 닫기
+  mb_div.click(function () {
     mb_div.hide();
-  })
-  // 내용을 클릭하면 배경으로 신호 전달을 막는다.
-  $('.mb-bg').click(function(event){
+  });
+
+  // 내용을 클릭하면 배경 신호 전달 막기
+  $(".mb-bg").click(function (event) {
     // 신호 전달 막기
     event.stopPropagation();
   });
-
-// 모바일 메뉴 기능
-  let mb_menu_li = $('.mb-menu > li');
-  $.each(mb_menu_li, function(index, item){
+  // 모바일 메뉴 기능
+  let mb_menu_li = $(".mb-menu > li");
+  $.each(mb_menu_li, function (index, item) {
     // mb-mainmenu 를 찾아서 보관
-    let temp = $(this).find('.mb-mainmenu');
-    temp.click(function(){
+    let temp = $(this).find(".mb-mainmenu");
+    temp.click(function () {
       // 펼쳐져 있는 경우 true, 없으면 false
-      let result = temp.hasClass('mb-mainmenu-open');
-      
-      if(result == true){
+      let result = temp.hasClass("mb-mainmenu-open");
+
+      if (result == true) {
         // 펼쳐진 클래스 가진 경우
-        temp.removeClass('mb-mainmenu-open');
+        temp.removeClass("mb-mainmenu-open");
         // 펼쳐진 서브메뉴 닫기
-        mb_menu_li.find('.mb-submenu').hide();
-        
+        mb_menu_li.find(".mb-submenu").hide();
       } else {
         // 모든 클래스를 일단 제거한다.
-        mb_menu_li.find('.mb-mainmenu').removeClass('mb-mainmenu-open');
+        mb_menu_li.find(".mb-mainmenu").removeClass("mb-mainmenu-open");
         // 모든 펼쳐진 서브메류를 닫는다.
-        mb_menu_li.find('.mb-submenu').hide();
+        mb_menu_li.find(".mb-submenu").hide();
 
         // 펼쳐진 클래스 없는 경우
-        temp.addClass('mb-mainmenu-open');
+        temp.addClass("mb-mainmenu-open");
         // 서브메뉴 펼치기
-        mb_menu_li.eq(index).find('.mb-submenu').show();
-
+        mb_menu_li.eq(index).find(".mb-submenu").show();
       }
-    })
-  })
-  // window 너비 체크 
-  $(window).resize(function(){
+    });
+  });
+  // window 너비 체크
+  $(window).resize(function () {
     let temp = $(window).width();
-    if(temp >= 880){
+    if (temp >= 880) {
       mb_div.hide();
-      $('.mb-mainmenu').removeClass('mb-mainmenu-open');
-      $('.mb-submenu').hide();
+      $(".mb-mainmenu").removeClass("mb-mainmenu-open");
+      $(".mb-submenu").hide();
     }
   });
 });
 
 // 멀티미디어 요소 로딩 완료 후 실행
-window.onload = function(){
+window.onload = function () {
   // 스크롤시 header 고정
-  let header = $('.header');
-  let wrap = $('.wrap');
+  let header = $(".header");
+  let wrap = $(".wrap");
   // 사라지는 시점 px 값 (배너의 높이값이 50이라서)
-  let fixY = $('.banner').height();
+  let fixY = $(".banner").height();
 
-  $(window).scroll(function(){
+  $(window).scroll(function () {
     // 스크롤바의 세로상단 px값
-    let temp = $(window).scrollTop()
+    let temp = $(window).scrollTop();
     // 50은 배너의 높이값
-    if(temp > fixY){
-      header.addClass('header-fix');
-      wrap.addClass('wrap-fix');
+    if (temp > fixY) {
+      header.addClass("header-fix");
+      wrap.addClass("wrap-fix");
     } else {
-      header.removeClass('header-fix');
-      wrap.removeClass('wrap-fix');
+      header.removeClass("header-fix");
+      wrap.removeClass("wrap-fix");
     }
-  }); 
-
-
-  // 상단 배너 닫기 기능
-  let banner_close = $('.banner-close');
-  banner_close.click(function(){
-    // 배너가 보여지지 않으므로 값을 제거
-    fixY = 0;
-    $('.banner').slideUp(300);
   });
 
-  // 상단 배너 슬라이드 
-  new Swiper('.sw-banner', {
-    loop:true,
+  // 상단 배너 닫기 기능
+  let banner_close = $(".banner-close");
+  banner_close.click(function () {
+    // 배너가 보여지지 않으므로 값을 제거
+    fixY = 0;
+    $(".banner").slideUp(300);
+  });
+
+  // 상단 배너 슬라이드
+  new Swiper(".sw-banner", {
+    loop: true,
     // fade 효과 ( swiper demo 확인 )
     effect: "fade",
     // pagination( swiper demo 확인, click 가능 )
     pagination: {
       el: ".sw-banner-pg",
-      clickable: true
+      clickable: true,
     },
-    autoplay:{
+    autoplay: {
       delay: 2500,
       disalbeOnInteraction: false,
     },
     // touchMove 제거 , 스와이퍼 api에서 찾아보기
-    allowTouchMove:false,
+    allowTouchMove: false,
   });
 
   // visual 슬라이드
-  new Swiper('.sw-visual', {
-    loop:true,
+  new Swiper(".sw-visual", {
+    loop: true,
     // pagination( swiper demo 확인, click 가능 )
     pagination: {
       el: ".sw-visual-pg",
-      clickable: true
+      clickable: true,
     },
-    autoplay:{
+    autoplay: {
       delay: 2500,
       disalbeOnInteraction: false,
     },
